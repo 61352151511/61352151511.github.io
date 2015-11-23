@@ -954,7 +954,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     }
   };
 
-  $scope.updateFilterForPlanet(loc) {
+  $scope.updateFilterForPlanet = function(loc) {
     var filtTime = loc.filterTime;
     $scope.filterTime.days = Math.floor(filtTime / 86400);
     filtTime = filtTime - (86400 * $scope.filterTime.days);
