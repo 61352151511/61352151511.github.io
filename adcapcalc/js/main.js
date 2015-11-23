@@ -145,12 +145,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         $scope[loadArr[k]].noTens = obj[loadArr[k]].noTens;
         $scope[loadArr[k]].filterTime = obj[loadArr[k]].filterTime;
         if (loadArr[k] == "earth") {
-        	var filtTime = $scope[loadArr[k]].filterTime;
-        	$scope.filterTime.days = Math.floor(filtTime / 86400);
-        	filtTime = filtTime - (86400 * $scope.filterTime.days);
-        	$scope.filterTime.hours = Math.floor(filtTime / 3600);
-        	filtTime = filtTime - (3600 * $scope.filterTime.hours);
-        	$scope.filterTime.minutes = Math.floor(filtTime / 60);
+        	$scope.updateFilterForPlanet($scope.earth);
         }
         $scope[loadArr[k]].triples = obj[loadArr[k]].triples;
         $scope[loadArr[k]].flux = obj[loadArr[k]].flux;
@@ -907,6 +902,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.earth;
+    $scope.updateFilterForPlanet($scope.earth);
   };
 
   $scope.setHalloween = function() {
@@ -914,6 +910,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.halloween;
+    $scope.updateFilterForPlanet($scope.halloween);
   };
 
   $scope.setMars = function() {
@@ -921,6 +918,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.mars;
+    $scope.updateFilterForPlanet($scope.mars);
   };
 
   $scope.setMoon = function() {
@@ -928,6 +926,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.moon;
+    $scope.updateFilterForPlanet($scope.moon);
   };
 
   $scope.toggleManagers = function(row, index) {
@@ -954,6 +953,15 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
       }
     }
   };
+
+  $scope.updateFilterForPlanet(loc) {
+    var filtTime = loc.filterTime;
+    $scope.filterTime.days = Math.floor(filtTime / 86400);
+    filtTime = filtTime - (86400 * $scope.filterTime.days);
+    $scope.filterTime.hours = Math.floor(filtTime / 3600);
+    filtTime = filtTime - (3600 * $scope.filterTime.hours);
+    $scope.filterTime.minutes = Math.floor(filtTime / 60);
+  }
 
   $scope.updateFilterTime = function(loc) {
     if ($scope.filterTime.days === null && $scope.filterTime.hours === null && $scope.filterTime.minutes === null) {
