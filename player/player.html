@@ -1,0 +1,55 @@
+<!doctype html>
+<head>
+    <script type="text/javascript" src="jwplayer.js"></script>
+
+    <script>
+        function setVolume(vol)
+        {
+            jwplayer("player").setVolume(vol);
+        }
+        
+        function setMute(b)
+        {
+            jwplayer("player").setMute(b);
+        }
+        
+        function play()
+        {
+            jwplayer("player").play(true);
+        }
+        
+        function pause()
+        {
+            jwplayer("player").play(false);
+        }
+        
+        function togglePlay()
+        {
+            jwplayer("player").play();
+        }
+        
+        function load(str, begin)
+        {
+            if(!begin) {
+                begin = 0;
+            }
+            jwplayer("player").load("http://youtube.com/watch?v="+str)
+            play();
+            seek(begin);
+        }
+        
+        function seek(sec)
+        {
+            jwplayer("player").seek(sec)
+        }
+    </script>
+</head>
+<body>
+    <dic id="player"></div>
+
+    <script>
+        jwplayer("player").setup({
+            flashplayer: "player.swf"
+        });
+    </script>
+</body>
