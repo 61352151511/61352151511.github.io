@@ -143,12 +143,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         }
         $scope[loadArr[k]].noSingles = obj[loadArr[k]].noSingles;
         $scope[loadArr[k]].noTens = obj[loadArr[k]].noTens;
-        $scope[loadArr[k]].filterTime = obj[loadArr[k]].filterTime;
-        $scope.calculatePlanetsFilter($scope[loadArr[k]]);
-        console.log(obj[loadArr[k]].filterTime);
-        if (loadArr[k] == "earth") {
-        	// $scope.updateFilterForPlanet($scope.earth);
-        }
         $scope[loadArr[k]].triples = obj[loadArr[k]].triples;
         $scope[loadArr[k]].flux = obj[loadArr[k]].flux;
         $scope[loadArr[k]].bonusAngelEffectiveness = obj[loadArr[k]].bonusAngelEffectiveness;
@@ -352,9 +346,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
       inc.push(10);
     }
     inc.push(100);
-    console.log(loc.name + ":" + loc.filterTime);
     $scope.updateFilterTime(loc);
-    console.log(loc.name + ":" + loc.filterTime);
     for (; i < loc.investments.length; i++) {
       while (inc.length > 3 - (loc.noSingles ? 1 : 0) - (loc.noTens ? 1 : 0)) {
         inc.pop();
@@ -685,7 +677,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         }
       }
     }
-    string += '\r\n  ], \r\n  "noSingles": ' + loc.noSingles + ',\r\n  "noTens": ' + loc.noTens + ',\r\n  "filterTime": ' + (loc.filterTime == null ? 0 : loc.filterTime);
+    string += '\r\n  ], \r\n  "noSingles": ' + loc.noSingles + ',\r\n  "noTens": ' + loc.noTens;
     string += ',\r\n  "triples": ' + loc.triples + ',\r\n  "flux": ' + loc.flux + ',\r\n  "bonusAngelEffectiveness": ' + loc.bonusAngelEffectiveness + ',\r\n  "bonusMultiplier": ' + loc.bonusMultiplier + ',\r\n  "megaTicket": [';
     first = true;
     for (i = 0; i < loc.investments.length; i++) {
@@ -792,30 +784,27 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
   };
 
   $scope.incrementDays = function(loc) {
-  	loc.filterTime += 86400;
-/*    if ($scope.filterTime.days !== null) {
+    if ($scope.filterTime.days !== null) {
       $scope.filterTime.days++;
     } else {
       $scope.filterTime.days = 1;
-    }*/
+    }
   };
 
   $scope.incrementHours = function(loc) {
-  	loc.filterTime += 3600;
-    /*if ($scope.filterTime.hours !== null) {
+    if ($scope.filterTime.hours !== null) {
       $scope.filterTime.hours++;
     } else {
       $scope.filterTime.hours = 1;
-    }*/
+    }
   };
 
   $scope.incrementMinutes = function(loc) {
-  	loc.filterTime += 60;
-    /*if ($scope.filterTime.minutes !== null) {
+    if ($scope.filterTime.minutes !== null) {
       $scope.filterTime.minutes++;
     } else {
       $scope.filterTime.minutes = 1;
-    }*/
+    }
   };
 
   function indexOrder(input) {
@@ -909,7 +898,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.earth;
-    // $scope.updateFilterForPlanet($scope.earth);
   };
 
   $scope.setHalloween = function() {
@@ -917,7 +905,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.halloween;
-    // $scope.updateFilterForPlanet($scope.halloween);
   };
 
   $scope.setMars = function() {
@@ -925,7 +912,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.mars;
-    // $scope.updateFilterForPlanet($scope.mars);
   };
 
   $scope.setMoon = function() {
@@ -933,7 +919,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.fillBefore = [false, false];
     $scope.compare = false;
     $scope.ref = $scope.moon;
-    // $scope.updateFilterForPlanet($scope.moon);
   };
 
   $scope.toggleManagers = function(row, index) {
@@ -961,27 +946,15 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     }
   };
 
-  $scope.calculatePlanetsFilter = function(loc) {
-  	var filtTime = loc.filterTime;
-  	loc.filterTimeDays = Math.floor(filtTime / 86400);
-    filtTime = filtTime - (86400 * loc.filterTimeDays);
-    loc.filterTimeHours = Math.floor(filtTime / 3600);
-    filtTime = filtTime - (3600 * loc.filterTimeHours);
-    loc.filterTimeMinutes = Math.floor(filtTime / 60);
-    $scope.updateFilterForPlanet(loc);
-  }
-
-  $scope.updateFilterForPlanet = function(loc) {
-    $scope.filterTime.days = loc.filterTimeDays;
-    $scope.filterTime.hours = loc.filterTimeHours;
-    $scope.filterTime.minutes = loc.filterTimeMinutes;
-  }
-
   $scope.updateFilterTime = function(loc) {
-  	$scope.filterTime.days = loc.filterTimeDays;
-  	$scope.filterTime.hours = loc.filterTimeHours;
-  	$scope.filterTime.minutes = loc.filterTimeMinutes;
-  	loc.filterTime = (loc.filterTimeDays * 86400) + (loc.filterTimeHours * 3600) + (loc.filterTimeMinutes * 60);
+    if ($scope.filterTime.days === null && $scope.filterTime.hours === null && $scope.filterTime.minutes === null) {
+      loc.filterTime = null;
+    } else {
+      loc.filterTime = ($scope.filterTime.days !== null ? $scope.filterTime.days * 86400 : 0) + ($scope.filterTime.hours !== null ? $scope.filterTime.hours * 3600 : 0) + ($scope.filterTime.minutes !== null ? $scope.filterTime.minutes * 60 : 0)
+      if (loc.filterTime === 0) {
+        loc.filterTime = null;
+      }
+    }
   };
 
   function updateRecString(loc) {
@@ -1003,10 +976,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.earth.baseSpeed = [0.6, 3, 6, 12, 24, 96, 384, 1536, 6144, 36864];
     $scope.earth.bonusAngelEffectiveness = 0;
     $scope.earth.bonusMultiplier = 0;
-    $scope.earth.filterTimeDays = 0;
-    $scope.earth.filterTimeHours = 0;
-    $scope.earth.filterTimeMinutes = 0;
-    $scope.earth.filterTime = 0;
+    $scope.earth.filterTime = null;
     $scope.earth.flux = 0;
     $scope.earth.illions = '';
     $scope.earth.investments = [
@@ -1041,10 +1011,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.moon.baseSpeed = [2, 7, 28, 2, 45, 180, 600, 3000, 14400, 86400];
     $scope.moon.bonusAngelEffectiveness = 0;
     $scope.moon.bonusMultiplier = 0;
-    $scope.moon.filterTimeDays = 0;
-    $scope.moon.filterTimeHours = 0;
-    $scope.moon.filterTimeMinutes = 0;
-    $scope.moon.filterTime = 0;
+    $scope.moon.filterTime = null;
     $scope.moon.flux = 0;
     $scope.moon.illions = '';
     $scope.moon.investments = [
@@ -1079,10 +1046,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.mars.baseSpeed = [0.5, 3, 9, 32, 64, 4, 18, 42, 43200];
     $scope.mars.bonusAngelEffectiveness = 0;
     $scope.mars.bonusMultiplier = 0;
-    $scope.moon.filterTimeDays = 0;
-    $scope.moon.filterTimeHours = 0;
-    $scope.moon.filterTimeMinutes = 0;
-    $scope.mars.filterTime = 0;
+    $scope.mars.filterTime = null;
     $scope.mars.flux = 0;
     $scope.mars.illions = '';
     $scope.mars.investments = [
@@ -1116,10 +1080,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     $scope.halloween.baseSpeed = [2, 5, 9, 14, 20, 56, 84, 144, 328, 666];
     $scope.halloween.bonusAngelEffectiveness = 0;
     $scope.halloween.bonusMultiplier = 0;
-    $scope.halloween.filterTimeDays = 0;
-    $scope.halloween.filterTimeHours = 0;
-    $scope.halloween.filterTimeMinutes = 0;
-    $scope.halloween.filterTime = 0;
+    $scope.halloween.filterTime = null;
     $scope.halloween.flux = 0;
     $scope.halloween.illions = '';
     $scope.halloween.investments = [
