@@ -144,7 +144,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         $scope[loadArr[k]].noSingles = obj[loadArr[k]].noSingles;
         $scope[loadArr[k]].noTens = obj[loadArr[k]].noTens;
         $scope[loadArr[k]].filterTime = obj[loadArr[k]].filterTime;
-        console.log(obj[loadArr[k]].filterTime;
+        console.log(obj[loadArr[k]].filterTime);
         if (loadArr[k] == "earth") {
         	$scope.updateFilterForPlanet($scope.earth);
         }
