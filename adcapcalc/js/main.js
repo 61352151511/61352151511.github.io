@@ -144,6 +144,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         $scope[loadArr[k]].noSingles = obj[loadArr[k]].noSingles;
         $scope[loadArr[k]].noTens = obj[loadArr[k]].noTens;
         $scope[loadArr[k]].filterTime = obj[loadArr[k]].filterTime;
+        console.log(loadArr[k]);
         $scope[loadArr[k]].triples = obj[loadArr[k]].triples;
         $scope[loadArr[k]].flux = obj[loadArr[k]].flux;
         $scope[loadArr[k]].bonusAngelEffectiveness = obj[loadArr[k]].bonusAngelEffectiveness;
