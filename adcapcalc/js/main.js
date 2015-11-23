@@ -144,7 +144,14 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         $scope[loadArr[k]].noSingles = obj[loadArr[k]].noSingles;
         $scope[loadArr[k]].noTens = obj[loadArr[k]].noTens;
         $scope[loadArr[k]].filterTime = obj[loadArr[k]].filterTime;
-        console.log(loadArr[k]);
+        if (loadArr[k]) == "earth" {
+        	var filtTime = $scope[loadArr[k]].filterTime;
+        	$scope.filterTime.days = Math.floor(filtTime / 86400);
+        	filtTime = filtTime - (86400 * $scope.filterTime.days);
+        	$scope.filterTime.hours = Math.floor(filtTime / 3600);
+        	filtTime = filtTime - (3600 * $scope.filterTime.hours);
+        	$scope.filterTime.minutes = Math.floor(filtTime / 60);
+        }
         $scope[loadArr[k]].triples = obj[loadArr[k]].triples;
         $scope[loadArr[k]].flux = obj[loadArr[k]].flux;
         $scope[loadArr[k]].bonusAngelEffectiveness = obj[loadArr[k]].bonusAngelEffectiveness;
