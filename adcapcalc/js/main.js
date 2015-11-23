@@ -351,9 +351,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
       inc.push(10);
     }
     inc.push(100);
-    console.log(loc.name + ":" + loc.filterTime);
-    $scope.updateFilterTime(loc);
-    console.log(loc.name + ":" + loc.filterTime);
+    $scope.updateFilterForPlanet(loc);
     for (; i < loc.investments.length; i++) {
       while (inc.length > 3 - (loc.noSingles ? 1 : 0) - (loc.noTens ? 1 : 0)) {
         inc.pop();
@@ -965,17 +963,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     filtTime = filtTime - (3600 * $scope.filterTime.hours);
     $scope.filterTime.minutes = Math.floor(filtTime / 60);
   }
-
-  $scope.updateFilterTime = function(loc) {
-    if ($scope.filterTime.days === null && $scope.filterTime.hours === null && $scope.filterTime.minutes === null) {
-      loc.filterTime = null;
-    } else {
-      loc.filterTime = ($scope.filterTime.days !== null ? $scope.filterTime.days * 86400 : 0) + ($scope.filterTime.hours !== null ? $scope.filterTime.hours * 3600 : 0) + ($scope.filterTime.minutes !== null ? $scope.filterTime.minutes * 60 : 0)
-      if (loc.filterTime === 0) {
-        loc.filterTime = null;
-      }
-    }
-  };
 
   function updateRecString(loc) {
     if (loc.rec[0] === 'level') {
