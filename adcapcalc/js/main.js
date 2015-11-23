@@ -78,7 +78,6 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
   $scope.compare = false;
   $scope.earth = {};
   $scope.fillBefore = [false, false];
-  $scope.selectAll = [false, false, false, false];
   $scope.filterOpen = false;
   $scope.filterTime = {'days': null, 'hours': null, 'minutes': null};
   $scope.halloween = {};
@@ -88,6 +87,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
   $scope.raw = false;
   $scope.ref = $scope.earth;
   $scope.reverse = true;
+  $scope.selectAll = [false, false, false, false];
   $scope.sortIndex = 2;
 
   angular.element(document).ready(function() {
@@ -675,7 +675,8 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         }
       }
     }
-    string += '\r\n  ],\r\n  "triples": ' + loc.triples + ',\r\n  "flux": ' + loc.flux + ',\r\n  "bonusAngelEffectiveness": ' + loc.bonusAngelEffectiveness + ',\r\n  "bonusMultiplier": ' + loc.bonusMultiplier + ',\r\n  "megaTicket": [';
+    string += '\r\n  ], "noSingles": ' + loc.noSingles + ',\r\n  "noTens": ' + loc.noTens + ',\r\n  "filterTimeDays": ' + loc.filterTime.days + ',\r\n  "filterTimeHours": ' + loc.filterTime.hours + ',\r\n  "filterTimeMinutes": ' + loc.filterTime.minutes;
+    string += ',\r\n  "triples": ' + loc.triples + ',\r\n  "flux": ' + loc.flux + ',\r\n  "bonusAngelEffectiveness": ' + loc.bonusAngelEffectiveness + ',\r\n  "bonusMultiplier": ' + loc.bonusMultiplier + ',\r\n  "megaTicket": [';
     first = true;
     for (i = 0; i < loc.investments.length; i++) {
       if (loc.investments[i][2] === true) {
