@@ -351,7 +351,9 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
       inc.push(10);
     }
     inc.push(100);
+    console.log(loc.name + ":" + loc.filterTime);
     $scope.updateFilterTime(loc);
+    console.log(loc.name + ":" + loc.filterTime);
     for (; i < loc.investments.length; i++) {
       while (inc.length > 3 - (loc.noSingles ? 1 : 0) - (loc.noTens ? 1 : 0)) {
         inc.pop();
