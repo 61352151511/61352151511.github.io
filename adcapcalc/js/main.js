@@ -675,7 +675,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         }
       }
     }
-    string += '\r\n  ], "noSingles": ' + loc.noSingles + ',\r\n  "noTens": ' + loc.noTens + ',\r\n  "filterTimeDays": ' + loc.filterTime.days + ',\r\n  "filterTimeHours": ' + loc.filterTime.hours + ',\r\n  "filterTimeMinutes": ' + loc.filterTime.minutes;
+    string += '\r\n  ], "noSingles": ' + loc.noSingles + ',\r\n  "noTens": ' + loc.noTens + ',\r\n  "filterTimeDays": ' + (loc.filterTime == null ? 0 : loc.filterTime.days) + ',\r\n  "filterTimeHours": ' + loc.filterTime == null ? 0 : loc.filterTime.hours + ',\r\n  "filterTimeMinutes": ' + loc.filterTime == null ? 0 : loc.filterTime.minutes;
     string += ',\r\n  "triples": ' + loc.triples + ',\r\n  "flux": ' + loc.flux + ',\r\n  "bonusAngelEffectiveness": ' + loc.bonusAngelEffectiveness + ',\r\n  "bonusMultiplier": ' + loc.bonusMultiplier + ',\r\n  "megaTicket": [';
     first = true;
     for (i = 0; i < loc.investments.length; i++) {
