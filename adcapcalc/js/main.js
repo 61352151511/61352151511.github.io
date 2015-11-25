@@ -371,7 +371,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         tempUnlock = calcUnlockCost(loc, i, loc.investments[i][1], inc[j]);
         tempUnlockTime = tempUnlock / loc.totalMoneyPerSecond;
         tempPercentageIncrease = (tempPlanet.totalMoneyPerSecond - loc.totalMoneyPerSecond) * 100 / loc.totalMoneyPerSecond;
-        if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage > tempPercentageIncrease)) {
+        if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage < tempPercentageIncrease)) {
           upgradeScore = calcUpgradeScore(tempPlanet, loc, tempUnlockTime);
           if (upgradeScore > max) {
             max = upgradeScore;
@@ -392,7 +392,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         calcState(tempPlanet);
         tempUnlockTime = loc.cashUpgrades[j][0] / loc.totalMoneyPerSecond;
         tempPercentageIncrease = (tempPlanet.totalMoneyPerSecond - loc.totalMoneyPerSecond) * 100 / loc.totalMoneyPerSecond;
-        if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage > tempPercentageIncrease)) {
+        if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage < tempPercentageIncrease)) {
           upgradeScore = calcUpgradeScore(tempPlanet, loc, tempUnlockTime);
           if (upgradeScore > max) {
             max = upgradeScore;
@@ -427,7 +427,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     calcState(tempPlanet);
     tempUnlockTime = tempUnlock / loc.totalMoneyPerSecond;
     tempPercentageIncrease = (tempPlanet.totalMoneyPerSecond - loc.totalMoneyPerSecond) * 100 / loc.totalMoneyPerSecond;
-    if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage > tempPercentageIncrease)) {
+    if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage < tempPercentageIncrease)) {
       upgradeScore = calcUpgradeScore(tempPlanet, loc, tempUnlockTime);
       if (upgradeScore > max) {
         max = upgradeScore;
