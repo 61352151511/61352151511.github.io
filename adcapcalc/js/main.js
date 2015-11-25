@@ -391,7 +391,8 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
         tempPlanet.cashUpgrades[j][tempPlanet.cashUpgrades[j].length - 1] = true;
         calcState(tempPlanet);
         tempUnlockTime = loc.cashUpgrades[j][0] / loc.totalMoneyPerSecond;
-        if (loc.filterTime === null || loc.filterTime > tempUnlockTime) {
+        tempPercentageIncrease = (tempPlanet.totalMoneyPerSecond - loc.totalMoneyPerSecond) * 100 / loc.totalMoneyPerSecond;
+        if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage > tempPercentageIncrease)) {
           upgradeScore = calcUpgradeScore(tempPlanet, loc, tempUnlockTime);
           if (upgradeScore > max) {
             max = upgradeScore;
