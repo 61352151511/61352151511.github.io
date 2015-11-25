@@ -336,7 +336,7 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     tempPlanet = JSON.parse(JSON.stringify(loc)),
     max = 0,
     maxObj = [0, 0],
-    tempUnlock = null, tempUnlockTime = null, tempPercentageIncrease = null;
+    tempUnlock = null, tempUnlockTime = null, tempPercentageIncrease = null,
     upgradeScore = 0;
     loc.recTable = [];
     if (!loc.noSingles) {
