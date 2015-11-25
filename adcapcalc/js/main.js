@@ -426,7 +426,8 @@ advApp.controller('advController', ['$document', '$filter', '$scope', function($
     }
     calcState(tempPlanet);
     tempUnlockTime = tempUnlock / loc.totalMoneyPerSecond;
-    if (loc.filterTime === null || loc.filterTime > tempUnlockTime) {
+    tempPercentageIncrease = (tempPlanet.totalMoneyPerSecond - loc.totalMoneyPerSecond) * 100 / loc.totalMoneyPerSecond;
+    if ((loc.filterTime === null || loc.filterTime > tempUnlockTime) && ($scope.filterTime.percentage === null || $scope.filterTime.percentage > tempPercentageIncrease)) {
       upgradeScore = calcUpgradeScore(tempPlanet, loc, tempUnlockTime);
       if (upgradeScore > max) {
         max = upgradeScore;
