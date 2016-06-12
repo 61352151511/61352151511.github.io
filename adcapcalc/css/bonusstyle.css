@@ -2,7 +2,11 @@ h1 {
   display:inline;
 }
 
-li {
+.nav-tabs > li > a {
+  cursor: pointer;
+}
+
+.nav-pills > li > a {
   cursor: pointer;
 }
 
@@ -14,20 +18,97 @@ thead th {
   margin-top: 10px;
 }
 
+.best_suit.fa-plus {
+  color: purple;
+}
+
 .clickable {
   cursor: pointer;
 }
 
-.fa-exclamation {
+.fa-plus {
   color: green;
   padding-left: 10px;
 }
 
 .illions {
-  width: 300px;
+  width: 18em;
 }
 
 .nav {
   margin-bottom: 15px;
   margin-top: 15px;
+}
+
+label:hover {
+  background: #f5f5f5;
+}
+
+.multicolumn {
+  -webkit-columns: 23em;
+  -moz-columns: 23em;
+  columns: 23em;
+}
+
+label.strike-when-checked > input:checked + span {
+  text-decoration: line-through;
+}
+
+button {
+  margin: 0px 4px 0px 4px
+}
+
+.footer {
+   position: fixed;
+   left: 0px;
+   bottom: 0px;
+   height: 5%;
+   width: 100%;
+   background: #FFFFFF;
+   border-style: dashed none none none;
+   border-width: 1px;
+   padding: 5px;
+}
+
+.centerpage {
+  position: fixed;
+  top: 5%;
+  left: 0px;
+  height: 90%;
+  width: 100%;
+  background: #FFFFFF;
+  padding: 5px;
+  overflow-y: scroll;
+}
+
+.header {
+  background-color: #6F5499;
+  background-image: linear-gradient(to bottom, #563D7C 0px, #6F5499 100%);
+  background-repeat: repeat-x;
+  color: white;
+  height: 5%;
+  padding: 5px;
+  width: 100%;
+}
+
+.header > p {
+  margin-left: 24px;
+  font-size: 24px;
+}
+
+.header > p > .pull-right {
+  margin-right: 15px;
+}
+
+.header > p > .pull-right > a {
+  color: white;
+}
+
+.header > p > .pull-right > a > i {
+  font-size: 1.5em;
+  margin-left: 10px;
+}
+
+.header > p > .small {
+  font-size: 16px;
 }
