@@ -345,7 +345,7 @@
         </div>
         <!-- Footer -->
         <div class="footer">
-          <b>Recommendation: {{ref.recommendation}} | ${{ref.recTable[0][3]}} | {{ref.recTable[0][4] | time:raw}}</b>
+          <b>Recommendation: {{ref.recommendation}} | ${{ref.recTable[0][3] | num:raw}} | {{ref.recTable[0][4] | time:raw}}</b>
           <button type="button" class="btn btn-success pull-right" data-ng-click="apply(ref)">Apply Recommendation</button>
         </div>
       </div>
