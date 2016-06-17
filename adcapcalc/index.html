@@ -40,14 +40,14 @@
       </div>
       <br>
       <uib-alert data-ng-if="showUpdate" type="success" close="hideUpdate()">
-        <strong>Update!</strong> Insert Coins to Continue event Calculations are here!
+        <strong>Update!</strong> Calculator Redesign!
       </uib-alert>
       <div class="col-md-2">
         <ul class="nav nav-pills nav-stacked">
           <li role="presentation" data-ng-class="{active: !isCompare() && isWorld('earth')}"><a data-ng-click="setWorld('earth')">Earth</a></li>
           <li role="presentation" data-ng-class="{active: !isCompare() && isWorld('moon')}"><a data-ng-click="setWorld('moon')">Moon</a></li>
           <li role="presentation" data-ng-class="{active: !isCompare() && isWorld('mars')}"><a data-ng-click="setWorld('mars')">Mars</a></li>
-          <li role="presentation" data-ng-class="{active: !isCompare() && isWorld('coins')}"><a data-ng-click="setWorld('coins')">Insert Coins to Continue</a></li>
+          <li class="disabled" role="presentation" data-ng-class="{active: !isCompare() && isWorld('cashella')}"><a <!--data-ng-click="setWorld('cashella')"-->Cashella - July 22</a></li>
           <hr>
           <li role="presentation" data-ng-class="{active: isTab('Angels')}"><a data-ng-click="setTab('Angels')">Angels <i data-ng-show="ref.angelExclamation" class="fa fa-plus"></i></a></li>
           <li role="presentation" data-ng-class="{active: isTab('AngelCalculations')}"><a data-ng-click="setTab('AngelCalculations')">Angel Calculations</a></li>
