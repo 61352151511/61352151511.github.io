@@ -18,6 +18,10 @@ thead th {
   margin-top: 10px;
 }
 
+.best_badge.fa-plus {
+  color: purple;
+}
+
 .best_suit.fa-plus {
   color: purple;
 }
